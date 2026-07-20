@@ -1,0 +1,18 @@
+[
+  {
+    "chunk_id": "0",
+    "text": "Parsed text content from plain text document.",
+    "metadata": {
+      "document_id": "doc_boiler_sop_txt",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "1",
+    "text": "Parsed text content from plain text document.",
+    "metadata": {
+      "document_id": "doc_pump_incident_txt",
+      "chunk_index": 0
+    }
+  }
+]

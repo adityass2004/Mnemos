@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "id": "doc_boiler_sop_txt",
+      "label": "boiler_sop.txt",
+      "type": "Document",
+      "properties": {
+        "source_type": "txt"
+      }
+    },
+    {
+      "id": "doc_boiler_sop_txt_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed text content from plain text document."
+      }
+    },
+    {
+      "id": "doc_pump_incident_txt",
+      "label": "pump_incident.txt",
+      "type": "Document",
+      "properties": {
+        "source_type": "txt"
+      }
+    },
+    {
+      "id": "doc_pump_incident_txt_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed text content from plain text document."
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "doc_boiler_sop_txt",
+      "target": "doc_boiler_sop_txt_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_pump_incident_txt",
+      "target": "doc_pump_incident_txt_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    }
+  ]
+}
