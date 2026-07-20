@@ -1,0 +1,9 @@
+{
+  "short_name": "Mnemos",
+  "name": "Mnemos Industrial Knowledge Intelligence Platform",
+  "icons": [],
+  "start_url": "/",
+  "background_color": "#0B0F19",
+  "theme_color": "#0F172A",
+  "display": "standalone"
+}
