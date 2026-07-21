@@ -1,9 +1,26 @@
+import json
+import logging
+from pathlib import Path
 from app.models.schemas import ClustersResponse, ClusterItem
+
+logger = logging.getLogger("Mnemos.ClustersService")
+
+_CLUSTERS_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "clusters.json"
+
 
 class ClustersService:
     async def get_clusters(self) -> ClustersResponse:
-        clusters = [
-            ClusterItem(cluster_id=1, member_ids=["boiler-1", "boiler-2", "heater-5"]),
-            ClusterItem(cluster_id=2, member_ids=["valve-2", "valve-4", "pump-1"])
-        ]
-        return ClustersResponse(total_clusters=len(clusters), clusters=clusters)
+        try:
+            with open(_CLUSTERS_PATH, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            clusters = [
+                ClusterItem(
+                    cluster_id=c["id"],
+                    member_ids=[inc["id"] for inc in c.get("incidents", [])]
+                )
+                for c in data.get("clusters", [])
+            ]
+            return ClustersResponse(total_clusters=data.get("total_clusters", len(clusters)), clusters=clusters)
+        except Exception as e:
+            logger.error(f"Failed to load clusters.json: {e}")
+            return ClustersResponse(total_clusters=0, clusters=[])

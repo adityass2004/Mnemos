@@ -1,4 +1,7 @@
 from pydantic import BaseModel, Field
+from enum import Enum
+from typing import Optional, List
+from datetime import datetime
 
 class ChatRequest(BaseModel):
     query: str = Field(min_length=1)
@@ -69,4 +72,65 @@ class ComplianceResponse(BaseModel):
     procedure: str
     compliant: bool
     issues: list[str]
+
+# Document Management Schemas
+
+class DocumentInfo(BaseModel):
+    filename: str
+    original_name: str
+    size_bytes: int
+    extension: str
+    uploaded_at: str
+
+class UploadResponse(BaseModel):
+    success: bool
+    message: str
+    uploaded: list[DocumentInfo]
+    count: int
+
+class DocumentListResponse(BaseModel):
+    message: str
+    documents: list[DocumentInfo]
+    count: int
+
+class DeleteResponse(BaseModel):
+    success: bool
+    message: str
+    filename: str
+
+class ResetResponse(BaseModel):
+    success: bool
+    message: str
+    files_deleted: int
+    job_id: str
+
+class KnowledgeStatusResponse(BaseModel):
+    documents: int
+    vectors: int
+    nodes: int
+    edges: int
+    loaded: bool
+
+# Job Status Schemas
+
+class JobStatus(str, Enum):
+    QUEUED = "queued"
+    PROCESSING = "processing"
+    COMPLETED = "completed"
+    READY = "ready"
+    FAILED = "failed"
+
+class JobStatusResponse(BaseModel):
+    job_id: str
+    status: JobStatus
+    progress: Optional[int] = None  # 0-100
+    started_at: Optional[datetime] = None
+    finished_at: Optional[datetime] = None
+    duration: Optional[float] = None  # in seconds
+    documents_processed: Optional[int] = None
+    errors: Optional[List[str]] = None
+
+class UploadResponseWithJob(UploadResponse):
+    job_id: str
+    ingestion_status: str = "queued"
 

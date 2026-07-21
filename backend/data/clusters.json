@@ -1,0 +1,131 @@
+{
+  "total_clusters": 5,
+  "embedding_backend": "sentence-transformer",
+  "clusters": [
+    {
+      "id": 1,
+      "label": "Bearing Failure — Lubrication Lapse",
+      "incidents": [
+        {
+          "id": "INC-2024-001",
+          "title": "P-204 drive-end bearing seizure",
+          "equipment_id": "P-204",
+          "date": "2024-01-18"
+        },
+        {
+          "id": "INC-2024-006",
+          "title": "Repeat P-204 bearing failure",
+          "equipment_id": "P-204",
+          "date": "2024-11-11"
+        },
+        {
+          "id": "INC-2025-005",
+          "title": "P-207 lubrication-related bearing damage",
+          "equipment_id": "P-207",
+          "date": "2025-09-02"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "id": 2,
+      "label": "Compressor Overpressure Events",
+      "incidents": [
+        {
+          "id": "INC-2024-002",
+          "title": "C-312 discharge overpressure near-miss",
+          "equipment_id": "C-312",
+          "date": "2024-03-09"
+        },
+        {
+          "id": "INC-2025-001",
+          "title": "C-312 pressure control excursion",
+          "equipment_id": "C-312",
+          "date": "2025-02-03"
+        },
+        {
+          "id": "INC-2025-006",
+          "title": "C-318 blocked pressure sensing line",
+          "equipment_id": "C-318",
+          "date": "2025-10-16"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "id": 3,
+      "label": "Corrosion and Inspection Degradation",
+      "incidents": [
+        {
+          "id": "INC-2024-005",
+          "title": "E-055 external corrosion finding",
+          "equipment_id": "E-055",
+          "date": "2024-09-30"
+        },
+        {
+          "id": "INC-2025-004",
+          "title": "E-055 corrosion under insulation",
+          "equipment_id": "E-055",
+          "date": "2025-07-26"
+        },
+        {
+          "id": "INC-2026-003",
+          "title": "E-061 coating breakdown",
+          "equipment_id": "E-061",
+          "date": "2026-05-29"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "id": 4,
+      "label": "Motor Overheating and Cooling Loss",
+      "incidents": [
+        {
+          "id": "INC-2024-004",
+          "title": "M-088 winding overtemperature trip",
+          "equipment_id": "M-088",
+          "date": "2024-08-14"
+        },
+        {
+          "id": "INC-2025-003",
+          "title": "M-088 cooling fan degradation",
+          "equipment_id": "M-088",
+          "date": "2025-05-07"
+        },
+        {
+          "id": "INC-2026-002",
+          "title": "M-092 ventilation blockage",
+          "equipment_id": "M-092",
+          "date": "2026-03-21"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "id": 5,
+      "label": "Valve Seal Leakage",
+      "incidents": [
+        {
+          "id": "INC-2024-003",
+          "title": "V-101 stem seal leak",
+          "equipment_id": "V-101",
+          "date": "2024-06-22"
+        },
+        {
+          "id": "INC-2025-002",
+          "title": "V-101 packing leak recurrence",
+          "equipment_id": "V-101",
+          "date": "2025-03-19"
+        },
+        {
+          "id": "INC-2026-001",
+          "title": "V-104 actuator flange leakage",
+          "equipment_id": "V-104",
+          "date": "2026-01-13"
+        }
+      ],
+      "count": 3
+    }
+  ]
+}
