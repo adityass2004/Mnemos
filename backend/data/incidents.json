@@ -1,0 +1,109 @@
+{
+  "incidents": [
+    {
+      "id": "INC-2024-001",
+      "title": "P-204 drive-end bearing seizure",
+      "equipment_id": "P-204",
+      "date": "2024-01-18",
+      "text": "Pump P-204 stopped after its drive-end bearing seized. Inspection found degraded grease and a missed lubrication interval. Bearing temperature and vibration had risen for three shifts before failure."
+    },
+    {
+      "id": "INC-2024-002",
+      "title": "C-312 discharge overpressure near-miss",
+      "equipment_id": "C-312",
+      "date": "2024-03-09",
+      "text": "Compressor C-312 discharge pressure rose above the operating limit after a blocked impulse line delayed the trip signal. The relief valve opened and prevented an overpressure event."
+    },
+    {
+      "id": "INC-2024-003",
+      "title": "V-101 stem seal leak",
+      "equipment_id": "V-101",
+      "date": "2024-06-22",
+      "text": "Valve V-101 leaked process fluid from the stem during maintenance. The packing seal was worn and the gland bolts had uneven torque after reassembly."
+    },
+    {
+      "id": "INC-2024-004",
+      "title": "M-088 winding overtemperature trip",
+      "equipment_id": "M-088",
+      "date": "2024-08-14",
+      "text": "Motor M-088 tripped on winding overtemperature. Cooling fins were obstructed by dust and the ventilation fan delivered insufficient airflow."
+    },
+    {
+      "id": "INC-2024-005",
+      "title": "E-055 external corrosion finding",
+      "equipment_id": "E-055",
+      "date": "2024-09-30",
+      "text": "Inspection of vessel E-055 found external corrosion beneath damaged insulation. The inspection interval had been extended and moisture ingress was not detected early."
+    },
+    {
+      "id": "INC-2024-006",
+      "title": "Repeat P-204 bearing failure",
+      "equipment_id": "P-204",
+      "date": "2024-11-11",
+      "text": "Pump P-204 suffered a second bearing failure. The lubrication route was overdue, grease quantity was below specification, and vibration warnings had not been actioned."
+    },
+    {
+      "id": "INC-2025-001",
+      "title": "C-312 pressure control excursion",
+      "equipment_id": "C-312",
+      "date": "2025-02-03",
+      "text": "Compressor C-312 experienced another discharge overpressure excursion when its pressure transmitter impulse line became restricted. Operators manually reduced load before relief activation."
+    },
+    {
+      "id": "INC-2025-002",
+      "title": "V-101 packing leak recurrence",
+      "equipment_id": "V-101",
+      "date": "2025-03-19",
+      "text": "A recurring leak developed around valve V-101 stem packing. Seal compression was uneven and the maintenance torque sequence was not followed."
+    },
+    {
+      "id": "INC-2025-003",
+      "title": "M-088 cooling fan degradation",
+      "equipment_id": "M-088",
+      "date": "2025-05-07",
+      "text": "Motor M-088 overheated during continuous duty because the cooling fan blades were damaged and airflow across the windings was low."
+    },
+    {
+      "id": "INC-2025-004",
+      "title": "E-055 corrosion under insulation",
+      "equipment_id": "E-055",
+      "date": "2025-07-26",
+      "text": "Follow-up inspection identified corrosion under insulation on vessel E-055 near a support ring. Water ingress and an overdue coating inspection accelerated metal loss."
+    },
+    {
+      "id": "INC-2025-005",
+      "title": "P-207 lubrication-related bearing damage",
+      "equipment_id": "P-207",
+      "date": "2025-09-02",
+      "text": "Pump P-207 showed bearing damage, high vibration, and excessive temperature after its automatic lubricator ran empty. The lubrication check was omitted from the weekly route."
+    },
+    {
+      "id": "INC-2025-006",
+      "title": "C-318 blocked pressure sensing line",
+      "equipment_id": "C-318",
+      "date": "2025-10-16",
+      "text": "Compressor C-318 approached an overpressure condition after condensate blocked the pressure sensing impulse line and delayed the shutdown interlock."
+    },
+    {
+      "id": "INC-2026-001",
+      "title": "V-104 actuator flange leakage",
+      "equipment_id": "V-104",
+      "date": "2026-01-13",
+      "text": "Valve V-104 developed leakage at the stem seal following actuator work. Packing rings were worn and flange fasteners were tightened out of sequence."
+    },
+    {
+      "id": "INC-2026-002",
+      "title": "M-092 ventilation blockage",
+      "equipment_id": "M-092",
+      "date": "2026-03-21",
+      "text": "Motor M-092 reached an overheating alarm when debris blocked ventilation openings. Reduced cooling airflow caused elevated winding temperature."
+    },
+    {
+      "id": "INC-2026-003",
+      "title": "E-061 coating breakdown",
+      "equipment_id": "E-061",
+      "date": "2026-05-29",
+      "text": "Inspection found corrosion and coating breakdown on vessel E-061 beneath wet insulation. A delayed inspection allowed local wall thinning to progress."
+    }
+  ]
+}

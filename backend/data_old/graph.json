@@ -1,0 +1,644 @@
+{
+  "nodes": [
+    {
+      "id": "doc_boiler_sop_txt",
+      "label": "boiler_sop.txt",
+      "type": "Document",
+      "properties": {
+        "source_type": "txt"
+      }
+    },
+    {
+      "id": "doc_boiler_sop_txt_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed text content from plain text document."
+      }
+    },
+    {
+      "id": "doc_pump_incident_txt",
+      "label": "pump_incident.txt",
+      "type": "Document",
+      "properties": {
+        "source_type": "txt"
+      }
+    },
+    {
+      "id": "doc_pump_incident_txt_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed text content from plain text document."
+      }
+    },
+    {
+      "id": "doc_1f0d811c56d3440198c41cf91649f20a_pdf",
+      "label": "1f0d811c56d3440198c41cf91649f20a.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_1f0d811c56d3440198c41cf91649f20a_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_087835dbc4f1436f89d2048d268780f2_pdf",
+      "label": "087835dbc4f1436f89d2048d268780f2.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_087835dbc4f1436f89d2048d268780f2_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_1725571888fd489a8e8872ee1d33d39a_pdf",
+      "label": "1725571888fd489a8e8872ee1d33d39a.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_1725571888fd489a8e8872ee1d33d39a_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_216392f46ad44c26bce087c25c616045_pdf",
+      "label": "216392f46ad44c26bce087c25c616045.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_216392f46ad44c26bce087c25c616045_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_234de8c23f094e318137642ebd827ea4_pdf",
+      "label": "234de8c23f094e318137642ebd827ea4.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_234de8c23f094e318137642ebd827ea4_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_3531b6085881427c92c435aecb77980a_pdf",
+      "label": "3531b6085881427c92c435aecb77980a.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_3531b6085881427c92c435aecb77980a_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_48d76c4eba1c4b86915d7591f0b9143c_pdf",
+      "label": "48d76c4eba1c4b86915d7591f0b9143c.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_48d76c4eba1c4b86915d7591f0b9143c_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_5500914a9a574c81a212b4c17f531613_pdf",
+      "label": "5500914a9a574c81a212b4c17f531613.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_5500914a9a574c81a212b4c17f531613_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_5764553058924c5cadbc83265e1e3f42_pdf",
+      "label": "5764553058924c5cadbc83265e1e3f42.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_5764553058924c5cadbc83265e1e3f42_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_593d7bae57184245b31ca9b5b7fa4285_pdf",
+      "label": "593d7bae57184245b31ca9b5b7fa4285.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_593d7bae57184245b31ca9b5b7fa4285_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_5e6ca0b08a1c4cb194ef2c45ef8d95ce_pdf",
+      "label": "5e6ca0b08a1c4cb194ef2c45ef8d95ce.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_5e6ca0b08a1c4cb194ef2c45ef8d95ce_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_65ae6be3c86942eebe987cd7df84e2d3_pdf",
+      "label": "65ae6be3c86942eebe987cd7df84e2d3.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_65ae6be3c86942eebe987cd7df84e2d3_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_68eae4f37cfa48908afe1f0cbff3b8f4_pdf",
+      "label": "68eae4f37cfa48908afe1f0cbff3b8f4.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_68eae4f37cfa48908afe1f0cbff3b8f4_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_741886d974a54ce69a438b9d7eccfc13_pdf",
+      "label": "741886d974a54ce69a438b9d7eccfc13.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_741886d974a54ce69a438b9d7eccfc13_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_7afaf23eed2b4a2784975eac3bb38a14_pdf",
+      "label": "7afaf23eed2b4a2784975eac3bb38a14.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_7afaf23eed2b4a2784975eac3bb38a14_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_7b2386a6628645f3bc3887a1d1a9b5ef_pdf",
+      "label": "7b2386a6628645f3bc3887a1d1a9b5ef.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_7b2386a6628645f3bc3887a1d1a9b5ef_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_7e0dfff0cb934b2f8a86af429c224b3e_pdf",
+      "label": "7e0dfff0cb934b2f8a86af429c224b3e.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_7e0dfff0cb934b2f8a86af429c224b3e_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_7fc258da6f254798ae69a6c5ef9484df_pdf",
+      "label": "7fc258da6f254798ae69a6c5ef9484df.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_7fc258da6f254798ae69a6c5ef9484df_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_862cfaf38793425083c49b980a7e9b73_pdf",
+      "label": "862cfaf38793425083c49b980a7e9b73.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_862cfaf38793425083c49b980a7e9b73_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_92e8d105288a4fa79a516d687e10d63e_pdf",
+      "label": "92e8d105288a4fa79a516d687e10d63e.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_92e8d105288a4fa79a516d687e10d63e_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_a93063fd5f1d436fa7e2be7662933ce4_pdf",
+      "label": "a93063fd5f1d436fa7e2be7662933ce4.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_a93063fd5f1d436fa7e2be7662933ce4_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_b3cf5b4511614b61b651245b5f454ac5_pdf",
+      "label": "b3cf5b4511614b61b651245b5f454ac5.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_b3cf5b4511614b61b651245b5f454ac5_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_c862a9e6f0314d6fa1836b5d2ce48f34_pdf",
+      "label": "c862a9e6f0314d6fa1836b5d2ce48f34.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_c862a9e6f0314d6fa1836b5d2ce48f34_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_d8a6c7e505214280aa42cc746d07e1ca_pdf",
+      "label": "d8a6c7e505214280aa42cc746d07e1ca.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_d8a6c7e505214280aa42cc746d07e1ca_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_dc94ad9a9e7e430aa6106c0f9dde554b_pdf",
+      "label": "dc94ad9a9e7e430aa6106c0f9dde554b.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_dc94ad9a9e7e430aa6106c0f9dde554b_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_facdb73eefa04e1e824bf3b4a7a074f9_pdf",
+      "label": "facdb73eefa04e1e824bf3b4a7a074f9.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_facdb73eefa04e1e824bf3b4a7a074f9_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    },
+    {
+      "id": "doc_fd51175955d142549b835236d9f44440_pdf",
+      "label": "fd51175955d142549b835236d9f44440.pdf",
+      "type": "Document",
+      "properties": {
+        "source_type": "pdf"
+      }
+    },
+    {
+      "id": "doc_fd51175955d142549b835236d9f44440_pdf_chunk_0",
+      "label": "Chunk 0",
+      "type": "Chunk",
+      "properties": {
+        "text_preview": "Parsed textual content extracted from PDF document"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "doc_boiler_sop_txt",
+      "target": "doc_boiler_sop_txt_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_pump_incident_txt",
+      "target": "doc_pump_incident_txt_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_1f0d811c56d3440198c41cf91649f20a_pdf",
+      "target": "doc_1f0d811c56d3440198c41cf91649f20a_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_087835dbc4f1436f89d2048d268780f2_pdf",
+      "target": "doc_087835dbc4f1436f89d2048d268780f2_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_1725571888fd489a8e8872ee1d33d39a_pdf",
+      "target": "doc_1725571888fd489a8e8872ee1d33d39a_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_216392f46ad44c26bce087c25c616045_pdf",
+      "target": "doc_216392f46ad44c26bce087c25c616045_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_234de8c23f094e318137642ebd827ea4_pdf",
+      "target": "doc_234de8c23f094e318137642ebd827ea4_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_3531b6085881427c92c435aecb77980a_pdf",
+      "target": "doc_3531b6085881427c92c435aecb77980a_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_48d76c4eba1c4b86915d7591f0b9143c_pdf",
+      "target": "doc_48d76c4eba1c4b86915d7591f0b9143c_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_5500914a9a574c81a212b4c17f531613_pdf",
+      "target": "doc_5500914a9a574c81a212b4c17f531613_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_5764553058924c5cadbc83265e1e3f42_pdf",
+      "target": "doc_5764553058924c5cadbc83265e1e3f42_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_593d7bae57184245b31ca9b5b7fa4285_pdf",
+      "target": "doc_593d7bae57184245b31ca9b5b7fa4285_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_5e6ca0b08a1c4cb194ef2c45ef8d95ce_pdf",
+      "target": "doc_5e6ca0b08a1c4cb194ef2c45ef8d95ce_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_65ae6be3c86942eebe987cd7df84e2d3_pdf",
+      "target": "doc_65ae6be3c86942eebe987cd7df84e2d3_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_68eae4f37cfa48908afe1f0cbff3b8f4_pdf",
+      "target": "doc_68eae4f37cfa48908afe1f0cbff3b8f4_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_741886d974a54ce69a438b9d7eccfc13_pdf",
+      "target": "doc_741886d974a54ce69a438b9d7eccfc13_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_7afaf23eed2b4a2784975eac3bb38a14_pdf",
+      "target": "doc_7afaf23eed2b4a2784975eac3bb38a14_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_7b2386a6628645f3bc3887a1d1a9b5ef_pdf",
+      "target": "doc_7b2386a6628645f3bc3887a1d1a9b5ef_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_7e0dfff0cb934b2f8a86af429c224b3e_pdf",
+      "target": "doc_7e0dfff0cb934b2f8a86af429c224b3e_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_7fc258da6f254798ae69a6c5ef9484df_pdf",
+      "target": "doc_7fc258da6f254798ae69a6c5ef9484df_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_862cfaf38793425083c49b980a7e9b73_pdf",
+      "target": "doc_862cfaf38793425083c49b980a7e9b73_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_92e8d105288a4fa79a516d687e10d63e_pdf",
+      "target": "doc_92e8d105288a4fa79a516d687e10d63e_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_a93063fd5f1d436fa7e2be7662933ce4_pdf",
+      "target": "doc_a93063fd5f1d436fa7e2be7662933ce4_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_b3cf5b4511614b61b651245b5f454ac5_pdf",
+      "target": "doc_b3cf5b4511614b61b651245b5f454ac5_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_c862a9e6f0314d6fa1836b5d2ce48f34_pdf",
+      "target": "doc_c862a9e6f0314d6fa1836b5d2ce48f34_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_d8a6c7e505214280aa42cc746d07e1ca_pdf",
+      "target": "doc_d8a6c7e505214280aa42cc746d07e1ca_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_dc94ad9a9e7e430aa6106c0f9dde554b_pdf",
+      "target": "doc_dc94ad9a9e7e430aa6106c0f9dde554b_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_facdb73eefa04e1e824bf3b4a7a074f9_pdf",
+      "target": "doc_facdb73eefa04e1e824bf3b4a7a074f9_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    },
+    {
+      "source": "doc_fd51175955d142549b835236d9f44440_pdf",
+      "target": "doc_fd51175955d142549b835236d9f44440_pdf_chunk_0",
+      "relation": "contains",
+      "properties": {}
+    }
+  ]
+}

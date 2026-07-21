@@ -1,0 +1,234 @@
+[
+  {
+    "chunk_id": "0",
+    "text": "Parsed text content from plain text document.",
+    "metadata": {
+      "document_id": "doc_boiler_sop_txt",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "1",
+    "text": "Parsed text content from plain text document.",
+    "metadata": {
+      "document_id": "doc_pump_incident_txt",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "2",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_1f0d811c56d3440198c41cf91649f20a_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "3",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_087835dbc4f1436f89d2048d268780f2_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "4",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_1725571888fd489a8e8872ee1d33d39a_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "5",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_216392f46ad44c26bce087c25c616045_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "6",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_234de8c23f094e318137642ebd827ea4_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "7",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_3531b6085881427c92c435aecb77980a_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "8",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_48d76c4eba1c4b86915d7591f0b9143c_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "9",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_5500914a9a574c81a212b4c17f531613_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "10",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_5764553058924c5cadbc83265e1e3f42_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "11",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_593d7bae57184245b31ca9b5b7fa4285_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "12",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_5e6ca0b08a1c4cb194ef2c45ef8d95ce_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "13",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_65ae6be3c86942eebe987cd7df84e2d3_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "14",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_68eae4f37cfa48908afe1f0cbff3b8f4_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "15",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_741886d974a54ce69a438b9d7eccfc13_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "16",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_7afaf23eed2b4a2784975eac3bb38a14_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "17",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_7b2386a6628645f3bc3887a1d1a9b5ef_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "18",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_7e0dfff0cb934b2f8a86af429c224b3e_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "19",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_7fc258da6f254798ae69a6c5ef9484df_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "20",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_862cfaf38793425083c49b980a7e9b73_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "21",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_92e8d105288a4fa79a516d687e10d63e_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "22",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_a93063fd5f1d436fa7e2be7662933ce4_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "23",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_b3cf5b4511614b61b651245b5f454ac5_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "24",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_c862a9e6f0314d6fa1836b5d2ce48f34_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "25",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_d8a6c7e505214280aa42cc746d07e1ca_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "26",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_dc94ad9a9e7e430aa6106c0f9dde554b_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "27",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_facdb73eefa04e1e824bf3b4a7a074f9_pdf",
+      "chunk_index": 0
+    }
+  },
+  {
+    "chunk_id": "28",
+    "text": "Parsed textual content extracted from PDF document format.",
+    "metadata": {
+      "document_id": "doc_fd51175955d142549b835236d9f44440_pdf",
+      "chunk_index": 0
+    }
+  }
+]
