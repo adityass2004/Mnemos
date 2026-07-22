@@ -39,9 +39,8 @@ from app.config.settings import settings
 from app.services.knowledge_manager import KnowledgeManager
 from app.services.job_manager import JobManager
 
-# Add project root to sys.path so we can import from ingestion
-sys.path.insert(0, str(settings.PROJECT_ROOT))
-from backend.ingestion.pipeline.pipeline import IngestionPipeline
+sys.path.insert(0, str(settings.BASE_DIR))
+from ingestion.pipeline.pipeline import IngestionPipeline
 
 logger = logging.getLogger("Mnemos.DocumentService")
 

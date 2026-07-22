@@ -1,9 +1,8 @@
 import sys
 from pathlib import Path
 
-# Add project root to sys.path BEFORE importing anything that uses ingestion or app modules
-_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(_PROJECT_ROOT))
+_BACKEND_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_BACKEND_ROOT))
 
 from contextlib import asynccontextmanager
 import logging
