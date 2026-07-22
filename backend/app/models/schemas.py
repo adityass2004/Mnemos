@@ -43,6 +43,7 @@ class IngestResponse(BaseModel):
 class GraphNode(BaseModel):
     id: str
     label: str
+    type: str = "Unknown"
     properties: dict[str, str]
 
 class GraphEdge(BaseModel):

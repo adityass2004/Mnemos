@@ -1,4 +1,5 @@
 import asyncio
+import time
 from google import genai
 from google.genai import errors as genai_errors
 from app.models.schemas import ChatRequest, ChatResponse
@@ -52,11 +53,18 @@ class IndustrialAgent:
             self.client = None
 
     def _call_gemini(self, prompt: str) -> str:
-        response = self.client.models.generate_content(
-            model="gemini-3.1-flash-lite",
-            contents=prompt
-        )
-        return response.text
+        last_error = None
+        for i in range(5):
+            try:
+                response = self.client.models.generate_content(
+                    model="gemini-3.6-flash",
+                    contents=prompt
+                )
+                return response.text
+            except Exception as error:
+                last_error = error
+                time.sleep(2 ** i)
+        raise last_error
 
     async def process_query(self, request: ChatRequest) -> ChatResponse:
         if "critical error" in request.query.lower():
@@ -69,26 +77,28 @@ class IndustrialAgent:
                 "Keep answers concise, technical, and actionable."
             )
             try:
+                prompt = f"{system_prompt}\n\nEngineer query: {request.query}"
                 reply = await asyncio.to_thread(
                     self._call_gemini,
-                    f"{system_prompt}\n\nEngineer query: {request.query}"
+                    prompt,
                 )
-                return ChatResponse(
-                    reply=reply,
-                    confidence=0.92,
-                    actions=["Review Mnemos knowledge graph for related incidents", "Log query to diagnostics"]
-                )
-            except genai_errors.ClientError as e:
-                if e.status_code == 429:
+            except genai_errors.APIError as e:
+                if e.code in (429, 503):
                     text, confidence, actions = _get_fallback(request.query)
                     return ChatResponse(
-                        reply=f"[Quota limit reached — using local knowledge]\n\n{text}",
+                        reply=f"[Gemini is temporarily unavailable — using local knowledge]\n\n{text}",
                         confidence=confidence,
                         actions=actions
                     )
-                raise AgentFailureException(f"Gemini API error: {e}") from e
+                else:
+                    raise AgentFailureException(f"Gemini API error: {e}") from e
             except Exception as e:
                 raise AgentFailureException(f"Unexpected agent error: {e}") from e
+            return ChatResponse(
+                reply=reply,
+                confidence=0.92,
+                actions=["Review Mnemos knowledge graph for related incidents", "Log query to diagnostics"]
+            )
 
         text, confidence, actions = _get_fallback(request.query)
         return ChatResponse(reply=text, confidence=confidence, actions=actions)

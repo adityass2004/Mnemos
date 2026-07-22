@@ -19,7 +19,12 @@ class GraphService:
                 GraphNode(
                     id=node_id,
                     label=data.get("label", node_id),
-                    properties={k: str(v) for k, v in data.get("properties", {}).items()}
+                    type=str(data.get("type", "Unknown")),
+                    properties={
+                        k: str(v)
+                        for k, v in data.items()
+                        if k not in {"label", "type"}
+                    }
                 )
             )
             

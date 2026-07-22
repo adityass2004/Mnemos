@@ -1,3 +1,4 @@
+from pydantic import AliasChoices, Field
 from pydantic_settings import BaseSettings
 from typing import Optional
 from pathlib import Path
@@ -8,7 +9,18 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     CORS_ORIGINS: list[str] = ["*"]
     LOG_LEVEL: str = "INFO"
-    GEMINI_API_KEY: Optional[str] = None
+    GEMINI_API_KEY: Optional[str] = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "MNEMOS_GEMINI_API_KEY",
+            "GEMINI_API_KEY",
+            "GOOGLE_API_KEY",
+        ),
+    )
+    GEMINI_MODEL: str = Field(
+        default="gemini-3.6-flash",
+        validation_alias=AliasChoices("MNEMOS_GEMINI_MODEL", "GEMINI_MODEL"),
+    )
 
     # File Upload Settings
     MAX_UPLOAD_SIZE: int = 100 * 1024 * 1024  # 100MB
