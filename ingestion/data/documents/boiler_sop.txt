@@ -1,5 +1,0 @@
-SOP-09: Boiler Pressure Bleedoff Procedure
-This standard operating procedure covers Boiler #01. Maintenance teams must execute bleeding sequences when line pressure exceeds thresholds.
-Author: Engineering Department. Revisions: 3.
-Safety guidelines fall under OSHA 1910.119 Process Safety Management regulations. Dual operator sign-offs are required before bleeding.
-Check Safety Valve #02 actuator hourly for any sign of corrosion or wear.

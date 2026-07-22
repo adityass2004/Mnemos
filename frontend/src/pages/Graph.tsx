@@ -32,9 +32,25 @@ export default function Graph() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [graphData, setGraphData] = useState<{ nodes: Node[]; links: Link[] }>({ nodes: [], links: [] });
+  const [graphSize, setGraphSize] = useState({ width: 0, height: 500 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const graphRef = useRef<any>(null);
+  const graphContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = graphContainerRef.current;
+    if (!container) return;
+
+    const updateSize = () => {
+      setGraphSize({ width: container.clientWidth, height: container.clientHeight });
+    };
+
+    updateSize();
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     fetch(`${BASE_URL}/graph`)
@@ -44,8 +60,8 @@ export default function Graph() {
           id: n.id,
           name: n.label || n.id,
           val: 8,
-          type: n.properties?.type || 'Unknown',
-          color: TYPE_COLORS[n.properties?.type] || '#64748b',
+          type: n.type || n.properties?.type || 'Unknown',
+          color: TYPE_COLORS[n.type || n.properties?.type] || '#64748b',
           properties: n.properties || {},
         }));
         const links: Link[] = (data.edges || []).map((e: any) => ({
@@ -99,24 +115,26 @@ export default function Graph() {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden h-[500px] relative">
+        <div ref={graphContainerRef} className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden h-[500px] relative">
           {loading ? (
             <div className="flex items-center justify-center h-full text-slate-400 text-sm">Loading graph...</div>
           ) : (
-            <ForceGraph2D
-              ref={graphRef}
-              graphData={graphData}
-              nodeLabel="name"
-              nodeColor={(n: any) => n.color}
-              nodeVal={(n: any) => n.val}
-              linkColor={() => '#334155'}
-              linkDirectionalParticles={2}
-              linkDirectionalParticleSpeed={0.005}
-              onNodeClick={(node: any) => setSelectedNode(node)}
-              cooldownTicks={100}
-              width={700}
-              height={500}
-            />
+            graphSize.width > 0 && (
+              <ForceGraph2D
+                ref={graphRef}
+                graphData={graphData}
+                nodeLabel="name"
+                nodeColor={(n: any) => n.color}
+                nodeVal={(n: any) => n.val}
+                linkColor={() => '#334155'}
+                linkDirectionalParticles={2}
+                linkDirectionalParticleSpeed={0.005}
+                onNodeClick={(node: any) => setSelectedNode(node)}
+                cooldownTicks={100}
+                width={graphSize.width}
+                height={graphSize.height}
+              />
+            )
           )}
           <div className="absolute bottom-4 left-4 bg-slate-950/80 border border-slate-800 p-4 rounded-lg flex flex-col gap-2 text-xs backdrop-blur-sm">
             <span className="font-bold text-white mb-1">Legend</span>

@@ -1,5 +1,0 @@
-INC-842: Steam Leak and Vibration Incident
-Date: 2026-06-15. Equipment: Boiler #01 and Coolant Pump #02.
-Vibration sensors on Coolant Pump #02 detected bearing fatigue exceeding 0.08g safety thresholds.
-Technician K. Patel conducted visual sweeps and verified seal wear on Safety Valve #02.
-Refer to ISO 45001 Safety Management System Standards for stabilizer relay replacement steps.

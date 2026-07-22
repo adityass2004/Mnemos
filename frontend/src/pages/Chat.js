@@ -6,11 +6,7 @@ import { sendChatMessage } from '../services/chatApi';
 export default function Chat() {
     const location = useLocation();
     const bottomRef = useRef(null);
-    const [sessions, setSessions] = useState([
-        { id: '1', title: 'Boiler 1 Pressure Warning', timestamp: '10 min ago' },
-        { id: '2', title: 'SOP-09 Safety Verification', timestamp: '1 hour ago' },
-        { id: '3', title: 'Relay System Diagnostics', timestamp: 'Yesterday' }
-    ]);
+    const [sessions, setSessions] = useState([]);
     const [activeSession, setActiveSession] = useState('1');
     const [selectedAgent, setSelectedAgent] = useState('AUTO');
     const [typing, setTyping] = useState(false);

@@ -22,11 +22,7 @@ export default function Chat() {
   const location = useLocation();
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const [sessions, setSessions] = useState<ChatSession[]>([
-    { id: '1', title: 'Boiler 1 Pressure Warning', timestamp: '10 min ago' },
-    { id: '2', title: 'SOP-09 Safety Verification', timestamp: '1 hour ago' },
-    { id: '3', title: 'Relay System Diagnostics', timestamp: 'Yesterday' }
-  ]);
+  const [sessions, setSessions] = useState<ChatSession[]>([]);
 
   const [activeSession, setActiveSession] = useState('1');
   const [selectedAgent, setSelectedAgent] = useState('AUTO');
@@ -149,11 +145,10 @@ export default function Chat() {
             <button
               key={s.id}
               onClick={() => setActiveSession(s.id)}
-              className={`w-full text-left p-3 rounded-lg text-xs transition-all ${
-                activeSession === s.id
+              className={`w-full text-left p-3 rounded-lg text-xs transition-all ${activeSession === s.id
                   ? 'bg-slate-800 text-sky-400 font-semibold border-l-2 border-sky-400'
                   : 'text-slate-400 hover:bg-slate-900 hover:text-slate-200'
-              }`}
+                }`}
             >
               <p className="truncate font-medium">{s.title}</p>
               <span className="text-[10px] text-slate-600 block mt-1">{s.timestamp}</span>
@@ -172,11 +167,10 @@ export default function Chat() {
               <button
                 key={agent}
                 onClick={() => setSelectedAgent(agent)}
-                className={`px-3 py-1 rounded text-[10px] font-bold tracking-wide uppercase transition-all ${
-                  selectedAgent === agent
+                className={`px-3 py-1 rounded text-[10px] font-bold tracking-wide uppercase transition-all ${selectedAgent === agent
                     ? 'bg-sky-500 text-slate-950'
                     : 'bg-slate-800 text-slate-400 hover:text-slate-200'
-                }`}
+                  }`}
               >
                 {agent === 'AUTO' ? 'Auto-Router' : agent.replace('Agent', '')}
               </button>
@@ -193,11 +187,10 @@ export default function Chat() {
                 </div>
               )}
               <div className="max-w-2xl space-y-2">
-                <div className={`p-4 rounded-xl text-sm leading-relaxed border ${
-                  msg.sender === 'user'
+                <div className={`p-4 rounded-xl text-sm leading-relaxed border ${msg.sender === 'user'
                     ? 'bg-sky-500 text-slate-950 border-sky-400 font-medium'
                     : 'bg-slate-800/80 text-slate-200 border-slate-700/60'
-                }`}>
+                  }`}>
                   {msg.agentName && (
                     <span className="text-[10px] uppercase font-bold tracking-wider text-sky-400 block mb-1">
                       {msg.agentName}
@@ -214,11 +207,10 @@ export default function Chat() {
                       </span>
                     )}
                     {msg.riskLevel && (
-                      <span className={`px-2 py-0.5 rounded-full border font-bold flex items-center gap-1 ${
-                        msg.riskLevel === 'CRITICAL' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
-                        msg.riskLevel === 'MODERATE' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' :
-                        'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                      }`}>
+                      <span className={`px-2 py-0.5 rounded-full border font-bold flex items-center gap-1 ${msg.riskLevel === 'CRITICAL' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
+                          msg.riskLevel === 'MODERATE' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' :
+                            'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                        }`}>
                         <Flame className="h-3 w-3" />
                         {msg.riskLevel} RISK
                       </span>
