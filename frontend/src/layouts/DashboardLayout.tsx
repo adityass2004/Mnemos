@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, MessageSquare, Network, ShieldCheck, Zap, Shield, Brain } from 'lucide-react';
+import { LayoutDashboard, MessageSquare, Network, ShieldCheck, Zap, Shield, Brain, FolderOpen } from 'lucide-react';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -12,6 +12,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const navigation = [
     { name: 'Dashboard', href: '/', icon: LayoutDashboard },
     { name: 'Agent Chat', href: '/chat', icon: MessageSquare },
+    { name: 'Documents', href: '/documents', icon: FolderOpen },
     { name: 'Graph Explorer', href: '/graph', icon: Network },
     { name: 'Compliance', href: '/compliance', icon: ShieldCheck },
     { name: 'Risk Assessment', href: '/risk', icon: Shield },

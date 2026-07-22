@@ -1,5 +1,15 @@
-import React, { useState } from 'react';
-import { Thermometer, Gauge, Activity, AlertTriangle, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Thermometer, Gauge, Activity, AlertTriangle, CheckCircle, RefreshCcw } from 'lucide-react';
+
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+
+interface KnowledgeStatus {
+  documents: number;
+  vectors: number;
+  nodes: number;
+  edges: number;
+  loaded: boolean;
+}
 
 export default function Dashboard() {
   const [telemetry, setTelemetry] = useState({
@@ -8,50 +18,125 @@ export default function Dashboard() {
     vibration: 0.04,
     machineId: "BLR-01",
   });
-  
+
   const [status, setStatus] = useState({
     status: "OPERATIONAL",
     anomalyDetected: false,
     recommendation: "No intervention required. Continue monitoring."
   });
 
+  const [knowledgeStatus, setKnowledgeStatus] = useState<KnowledgeStatus | null>(null);
+  const [knowledgeError, setKnowledgeError] = useState<string | null>(null);
+  const [loadingKnowledge, setLoadingKnowledge] = useState(true);
+
+  const loadKnowledgeStatus = async () => {
+    setLoadingKnowledge(true);
+    setKnowledgeError(null);
+    try {
+      const res = await fetch(`${BASE_URL}/knowledge/status`);
+      if (!res.ok) {
+        throw new Error(`${res.status} ${res.statusText}`);
+      }
+      const data = await res.json();
+      setKnowledgeStatus(data);
+    } catch (e: any) {
+      setKnowledgeError(`Could not load backend status: ${e.message}`);
+      setKnowledgeStatus(null);
+    } finally {
+      setLoadingKnowledge(false);
+    }
+  };
+
+  useEffect(() => {
+    loadKnowledgeStatus();
+  }, []);
+
+  const submitTelemetry = async (values: typeof telemetry) => {
+    try {
+      const res = await fetch(`${BASE_URL}/telemetry`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          machine_id: values.machineId,
+          temperature: values.temperature,
+          pressure: values.pressure,
+          vibration: values.vibration,
+        }),
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      setStatus({
+        status: data.status,
+        anomalyDetected: data.anomaly_detected,
+        recommendation: data.recommendation,
+      });
+    } catch { /* network error — keep current status */ }
+  };
+
   const handleSimulateNormal = () => {
-    setTelemetry({ temperature: 84.2, pressure: 110.5, vibration: 0.03, machineId: "BLR-01" });
-    setStatus({
-      status: "OPERATIONAL",
-      anomalyDetected: false,
-      recommendation: "No intervention required. Continue monitoring."
-    });
+    const values = { temperature: 84.2, pressure: 110.5, vibration: 0.03, machineId: "BLR-01" };
+    setTelemetry(values);
+    submitTelemetry(values);
   };
 
   const handleSimulateWarning = () => {
-    setTelemetry({ temperature: 112.4, pressure: 155.2, vibration: 0.08, machineId: "BLR-01" });
-    setStatus({
-      status: "CRITICAL",
-      anomalyDetected: true,
-      recommendation: "Initiate emergency cooling system and pressure relief valve."
-    });
+    const values = { temperature: 112.4, pressure: 155.2, vibration: 0.08, machineId: "BLR-01" };
+    setTelemetry(values);
+    submitTelemetry(values);
   };
 
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-white">System Status</h2>
+          <h2 className="text-2xl font-bold text-white">Systems Status</h2>
           <p className="text-slate-400 text-sm">Real-time parameters for Mnemos Boiler #01</p>
         </div>
         <div className="flex gap-4">
-          <button 
+          <button
             onClick={handleSimulateNormal}
             className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-sm font-medium transition-all"
           >
             Normal State
           </button>
-          <button 
+          <button
             onClick={handleSimulateWarning}
             className="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/50 rounded-lg text-sm font-medium transition-all"
           >
             Trigger Anomaly
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-wider text-slate-500">Backend Knowledge Status</p>
+            {loadingKnowledge ? (
+              <p className="text-sm text-slate-400 mt-2">Loading...</p>
+            ) : knowledgeError ? (
+              <p className="text-sm text-red-400 mt-2">{knowledgeError}</p>
+            ) : knowledgeStatus ? (
+              <div className="space-y-2 mt-3">
+                <p className="text-2xl font-bold text-white">{knowledgeStatus.loaded ? 'Loaded' : 'Not Loaded'}</p>
+                <div className="grid grid-cols-2 gap-2 text-xs text-slate-400">
+                  <div>Documents</div><div className="text-right text-white">{knowledgeStatus.documents}</div>
+                  <div>Vectors</div><div className="text-right text-white">{knowledgeStatus.vectors}</div>
+                  <div>Nodes</div><div className="text-right text-white">{knowledgeStatus.nodes}</div>
+                  <div>Edges</div><div className="text-right text-white">{knowledgeStatus.edges}</div>
+                </div>
+              </div>
+            ) : (
+              <p className="text-sm text-slate-400 mt-2">No status available.</p>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={loadKnowledgeStatus}
+            className="rounded-lg border border-slate-700/80 p-3 text-slate-300 hover:bg-slate-800"
+            aria-label="Refresh knowledge status"
+          >
+            <RefreshCcw className="h-5 w-5" />
           </button>
         </div>
       </div>
@@ -91,11 +176,10 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className={`p-6 rounded-xl border flex gap-4 ${
-        status.anomalyDetected 
-          ? 'bg-red-500/10 border-red-500/30 text-red-200' 
-          : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-200'
-      }`}>
+      <div className={`p-6 rounded-xl border flex gap-4 ${status.anomalyDetected
+        ? 'bg-red-500/10 border-red-500/30 text-red-200'
+        : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-200'
+        }`}>
         <div className="mt-1">
           {status.anomalyDetected ? (
             <AlertTriangle className="h-6 w-6 text-red-400" />
@@ -119,8 +203,8 @@ export default function Dashboard() {
             <div className="absolute left-2 bottom-2 text-[10px] text-slate-500 font-mono">80 psi</div>
             <svg className="w-full h-full overflow-visible" viewBox="0 0 500 200">
               <path
-                d={status.anomalyDetected 
-                  ? "M 0 150 L 100 130 L 200 110 L 300 120 L 400 90 L 500 20" 
+                d={status.anomalyDetected
+                  ? "M 0 150 L 100 130 L 200 110 L 300 120 L 400 90 L 500 20"
                   : "M 0 150 L 100 130 L 200 110 L 300 120 L 400 90 L 500 80"
                 }
                 fill="none"

@@ -1,0 +1,14 @@
+# ── Env files (never commit real secrets) ───────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Node / Vite build artifacts ─────────────────────────────
+node_modules/
+dist/
+.cache/
+*.log
+
+# ── OS artefacts ────────────────────────────────────────────
+.DS_Store
+Thumbs.db

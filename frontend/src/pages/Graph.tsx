@@ -1,12 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
 import { Search, Layers } from 'lucide-react';
+
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+
+const TYPE_COLORS: Record<string, string> = {
+  Equipment: '#3b82f6',
+  Incident: '#ef4444',
+  Regulation: '#eab308',
+  Document: '#a855f7',
+};
 
 interface Node {
   id: string;
   name: string;
   val: number;
-  type: 'Equipment' | 'Incident' | 'Regulation' | 'Document';
+  type: string;
   color: string;
   properties: Record<string, string>;
   x?: number;
@@ -22,32 +31,41 @@ interface Link {
 export default function Graph() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+  const [graphData, setGraphData] = useState<{ nodes: Node[]; links: Link[] }>({ nodes: [], links: [] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const graphRef = useRef<any>(null);
 
-  const [graphData] = useState<{ nodes: Node[]; links: Link[] }>({
-    nodes: [
-      { id: 'boiler-1', name: 'Boiler #01', val: 12, type: 'Equipment', color: '#3b82f6', properties: { location: 'Sector A', threshold: '200psi', status: 'normal' } },
-      { id: 'valve-2', name: 'Safety Valve #02', val: 8, type: 'Equipment', color: '#3b82f6', properties: { type: 'Relief', status: 'Active' } },
-      { id: 'inc-842', name: 'INC-842: Steam Leak', val: 10, type: 'Incident', color: '#ef4444', properties: { date: '2024-06-15', cause: 'Thermal fatigue' } },
-      { id: 'osha-psm', name: 'OSHA 1910.119', val: 10, type: 'Regulation', color: '#eab308', properties: { title: 'Process Safety Management' } },
-      { id: 'doc-sop-04', name: 'SOP-04: Purge SOP', val: 8, type: 'Document', color: '#a855f7', properties: { revisions: '3', author: 'Eng Dept' } },
-    ],
-    links: [
-      { source: 'doc-sop-04', target: 'boiler-1', relation: 'contains' },
-      { source: 'boiler-1', target: 'inc-842', relation: 'mentions' },
-      { source: 'inc-842', target: 'osha-psm', relation: 'references' },
-      { source: 'boiler-1', target: 'valve-2', relation: 'related_to' },
-    ]
-  });
-
-  const handleNodeClick = (node: any) => {
-    setSelectedNode(node);
-  };
+  useEffect(() => {
+    fetch(`${BASE_URL}/graph`)
+      .then(r => { if (!r.ok) throw new Error(`${r.status}`); return r.json(); })
+      .then(data => {
+        const nodes: Node[] = (data.nodes || []).map((n: any) => ({
+          id: n.id,
+          name: n.label || n.id,
+          val: 8,
+          type: n.properties?.type || 'Unknown',
+          color: TYPE_COLORS[n.properties?.type] || '#64748b',
+          properties: n.properties || {},
+        }));
+        const links: Link[] = (data.edges || []).map((e: any) => ({
+          source: e.source,
+          target: e.target,
+          relation: e.relation || 'related_to',
+        }));
+        setGraphData({ nodes, links });
+      })
+      .catch(e => setError(`Failed to load graph: ${e.message}`))
+      .finally(() => setLoading(false));
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
-    const found = graphData.nodes.find(n => n.name.toLowerCase().includes(searchQuery.toLowerCase()) || n.id.toLowerCase().includes(searchQuery.toLowerCase()));
+    const found = graphData.nodes.find(n =>
+      n.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      n.id.toLowerCase().includes(searchQuery.toLowerCase())
+    );
     if (found && graphRef.current) {
       graphRef.current.centerAt(found.x, found.y, 1000);
       graphRef.current.zoom(3, 1000);
@@ -62,7 +80,6 @@ export default function Graph() {
           <h2 className="text-2xl font-bold text-white">Interactive Knowledge Graph</h2>
           <p className="text-slate-400 text-sm">Force-directed visualization of systems, incidents, and standards</p>
         </div>
-
         <form onSubmit={handleSearch} className="flex gap-2">
           <input
             type="text"
@@ -71,50 +88,44 @@ export default function Graph() {
             placeholder="Search nodes..."
             className="bg-slate-900 border border-slate-800 rounded-lg px-4 py-2 text-xs text-white focus:outline-none focus:border-sky-500 w-64"
           />
-          <button
-            type="submit"
-            className="bg-sky-500 hover:bg-sky-400 text-slate-950 p-2 rounded-lg flex items-center justify-center transition-all"
-          >
+          <button type="submit" className="bg-sky-500 hover:bg-sky-400 text-slate-950 p-2 rounded-lg flex items-center justify-center transition-all">
             <Search className="h-4 w-4" />
           </button>
         </form>
       </div>
 
+      {error && (
+        <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-xs p-4 rounded-xl">{error}</div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden h-[500px] relative">
-          <ForceGraph2D
-            ref={graphRef}
-            graphData={graphData}
-            nodeLabel="name"
-            nodeColor={(n: any) => n.color}
-            nodeVal={(n: any) => n.val}
-            linkColor={() => '#334155'}
-            linkDirectionalParticles={2}
-            linkDirectionalParticleSpeed={0.005}
-            onNodeClick={handleNodeClick}
-            cooldownTicks={100}
-            width={700}
-            height={500}
-          />
-          
+          {loading ? (
+            <div className="flex items-center justify-center h-full text-slate-400 text-sm">Loading graph...</div>
+          ) : (
+            <ForceGraph2D
+              ref={graphRef}
+              graphData={graphData}
+              nodeLabel="name"
+              nodeColor={(n: any) => n.color}
+              nodeVal={(n: any) => n.val}
+              linkColor={() => '#334155'}
+              linkDirectionalParticles={2}
+              linkDirectionalParticleSpeed={0.005}
+              onNodeClick={(node: any) => setSelectedNode(node)}
+              cooldownTicks={100}
+              width={700}
+              height={500}
+            />
+          )}
           <div className="absolute bottom-4 left-4 bg-slate-950/80 border border-slate-800 p-4 rounded-lg flex flex-col gap-2 text-xs backdrop-blur-sm">
             <span className="font-bold text-white mb-1">Legend</span>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-blue-500"></span>
-              <span className="text-slate-300">Equipment</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red-500"></span>
-              <span className="text-slate-300">Incident</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-              <span className="text-slate-300">Regulation</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-purple-500"></span>
-              <span className="text-slate-300">Document</span>
-            </div>
+            {Object.entries(TYPE_COLORS).map(([type, color]) => (
+              <div key={type} className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full" style={{ backgroundColor: color }}></span>
+                <span className="text-slate-300">{type}</span>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -136,7 +147,7 @@ export default function Graph() {
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4 min-h-[220px]">
             <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
               <Layers className="h-4 w-4 text-sky-400" />
-              Node details
+              Node Details
             </h3>
             {selectedNode ? (
               <div className="space-y-3">
@@ -150,13 +161,13 @@ export default function Graph() {
                   {Object.entries(selectedNode.properties).map(([k, v]) => (
                     <div key={k} className="flex justify-between text-xs">
                       <span className="text-slate-500 capitalize">{k}:</span>
-                      <span className="text-slate-300 font-medium">{v}</span>
+                      <span className="text-slate-300 font-medium">{String(v)}</span>
                     </div>
                   ))}
                 </div>
               </div>
             ) : (
-              <p className="text-xs text-slate-550 italic">Select a node from the canvas to view properties.</p>
+              <p className="text-xs text-slate-500 italic">Select a node from the canvas to view properties.</p>
             )}
           </div>
         </div>

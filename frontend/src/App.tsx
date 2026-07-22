@@ -8,6 +8,7 @@ import Graph from './pages/Graph';
 import Compliance from './pages/Compliance';
 import RiskDashboard from './pages/RiskDashboard';
 import PatternIntelligence from './pages/PatternIntelligence';
+import Documents from './pages/Documents';
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/documents" element={<Documents />} />
             <Route path="/graph" element={<Graph />} />
             <Route path="/compliance" element={<Compliance />} />
             <Route path="/risk" element={<RiskDashboard />} />

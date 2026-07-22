@@ -1,232 +1,110 @@
-import React, { useState, useEffect } from 'react';
-import { getEquipmentRisks, EquipmentRisk } from '../services/riskApi';
-import { Search, Filter, ChevronUp, ChevronDown, Activity } from 'lucide-react';
+import React, { useState } from 'react';
+import { getEquipmentRisk, EquipmentRisk } from '../services/riskApi';
+import { Search, Activity } from 'lucide-react';
 
 export default function RiskDashboard() {
-  const [data, setData] = useState<EquipmentRisk[]>([]);
-  const [search, setSearch] = useState('');
-  const [filterLevel, setFilterLevel] = useState('ALL');
-  const [sortField, setSortField] = useState<'name' | 'riskLevel' | 'probability' | 'severity'>('name');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-  const [selected, setSelected] = useState<EquipmentRisk | null>(null);
+  const [query, setQuery] = useState('');
+  const [result, setResult] = useState<EquipmentRisk | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    getEquipmentRisks().then(res => {
-      setData(res);
-      if (res.length > 0) setSelected(res[0]);
-    });
-  }, []);
-
-  const handleSort = (field: 'name' | 'riskLevel' | 'probability' | 'severity') => {
-    const isAsc = sortField === field && sortOrder === 'asc';
-    setSortOrder(isAsc ? 'desc' : 'asc');
-    setSortField(field);
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+    setLoading(true);
+    setError(null);
+    setResult(null);
+    try {
+      const data = await getEquipmentRisk(query.trim());
+      setResult(data);
+    } catch {
+      setError('Failed to fetch risk data. Check the equipment ID and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const getRiskNumeric = (lvl: string) => {
-    if (lvl === 'CRITICAL') return 3;
-    if (lvl === 'MODERATE') return 2;
-    return 1;
+  const riskColor = (level: string) => {
+    if (level === 'HIGH') return 'bg-red-500/10 text-red-400 border-red-500/20';
+    if (level === 'MODERATE') return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
+    if (level === 'LOW') return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+    return 'bg-slate-500/10 text-slate-400 border-slate-500/20';
   };
-
-  const filteredData = data
-    .filter(item => {
-      const matchSearch = item.name.toLowerCase().includes(search.toLowerCase()) || item.id.toLowerCase().includes(search.toLowerCase());
-      const matchFilter = filterLevel === 'ALL' || item.riskLevel === filterLevel;
-      return matchSearch && matchFilter;
-    })
-    .sort((a, b) => {
-      let comparison = 0;
-      if (sortField === 'name') {
-        comparison = a.name.localeCompare(b.name);
-      } else if (sortField === 'riskLevel') {
-        comparison = getRiskNumeric(a.riskLevel) - getRiskNumeric(b.riskLevel);
-      } else {
-        comparison = a[sortField] - b[sortField];
-      }
-      return sortOrder === 'asc' ? comparison : -comparison;
-    });
-
-  const criticalCount = data.filter(d => d.riskLevel === 'CRITICAL').length;
-  const moderateCount = data.filter(d => d.riskLevel === 'MODERATE').length;
-  const lowCount = data.filter(d => d.riskLevel === 'LOW').length;
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h2 className="text-2xl font-bold text-white">Risk Assessment Dashboard</h2>
-          <p className="text-slate-400 text-sm">Analyze machinery probability and hazard indices</p>
-        </div>
-        <div className="flex gap-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search equipment..."
-              className="bg-slate-900 border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-sky-500 w-56"
-            />
-          </div>
-          <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-2 rounded-lg">
-            <Filter className="h-4 w-4 text-slate-500" />
-            <select
-              value={filterLevel}
-              onChange={(e) => setFilterLevel(e.target.value)}
-              className="bg-transparent text-xs text-slate-300 focus:outline-none cursor-pointer"
-            >
-              <option value="ALL">All Risks</option>
-              <option value="LOW">Low</option>
-              <option value="MODERATE">Moderate</option>
-              <option value="CRITICAL">Critical</option>
-            </select>
-          </div>
-        </div>
+      <div>
+        <h2 className="text-2xl font-bold text-white">Risk Assessment Dashboard</h2>
+        <p className="text-slate-400 text-sm">Query equipment failure risk scores from the LightGBM model</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Risk Distribution</h3>
-            <div className="flex items-center gap-8">
-              <div className="flex-1 flex gap-2 items-end h-32 pt-4">
-                <div className="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
-                  <div className="bg-red-500 w-full rounded-t-md transition-all" style={{ height: `${(criticalCount / data.length) * 100}%` }}></div>
-                  <span className="text-[10px] text-slate-400 font-bold uppercase">Critical ({criticalCount})</span>
-                </div>
-                <div className="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
-                  <div className="bg-orange-500 w-full rounded-t-md transition-all" style={{ height: `${(moderateCount / data.length) * 100}%` }}></div>
-                  <span className="text-[10px] text-slate-400 font-bold uppercase">Moderate ({moderateCount})</span>
-                </div>
-                <div className="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
-                  <div className="bg-emerald-500 w-full rounded-t-md transition-all" style={{ height: `${(lowCount / data.length) * 100}%` }}></div>
-                  <span className="text-[10px] text-slate-400 font-bold uppercase">Low ({lowCount})</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 bg-slate-900/50">
-                    <th className="p-4 font-semibold uppercase cursor-pointer" onClick={() => handleSort('name')}>
-                      <span className="flex items-center gap-1">
-                        Equipment
-                        {sortField === 'name' && (sortOrder === 'asc' ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />)}
-                      </span>
-                    </th>
-                    <th className="p-4 font-semibold uppercase cursor-pointer" onClick={() => handleSort('riskLevel')}>
-                      <span className="flex items-center gap-1">
-                        Risk Level
-                        {sortField === 'riskLevel' && (sortOrder === 'asc' ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />)}
-                      </span>
-                    </th>
-                    <th className="p-4 font-semibold uppercase cursor-pointer" onClick={() => handleSort('probability')}>
-                      <span className="flex items-center gap-1">
-                        Probability
-                        {sortField === 'probability' && (sortOrder === 'asc' ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />)}
-                      </span>
-                    </th>
-                    <th className="p-4 font-semibold uppercase cursor-pointer" onClick={() => handleSort('severity')}>
-                      <span className="flex items-center gap-1">
-                        Severity
-                        {sortField === 'severity' && (sortOrder === 'asc' ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />)}
-                      </span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800/50 text-slate-300">
-                  {filteredData.map(item => (
-                    <tr
-                      key={item.id}
-                      onClick={() => setSelected(item)}
-                      className={`hover:bg-slate-800/40 cursor-pointer transition-all ${
-                        selected?.id === item.id ? 'bg-slate-800/70 border-l-4 border-sky-400' : ''
-                      }`}
-                    >
-                      <td className="p-4">
-                        <p className="font-bold text-white">{item.name}</p>
-                        <span className="text-[10px] text-slate-500 font-mono">{item.id}</span>
-                      </td>
-                      <td className="p-4">
-                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                          item.riskLevel === 'CRITICAL' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
-                          item.riskLevel === 'MODERATE' ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' :
-                          'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                        }`}>
-                          {item.riskLevel}
-                        </span>
-                      </td>
-                      <td className="p-4 w-40">
-                        <div className="flex items-center gap-2">
-                          <div className="flex-1 bg-slate-805 h-2 rounded-full overflow-hidden">
-                            <div className="bg-sky-400 h-full rounded-full" style={{ width: `${item.probability * 100}%` }}></div>
-                          </div>
-                          <span className="font-mono text-[10px]">{Math.round(item.probability * 100)}%</span>
-                        </div>
-                      </td>
-                      <td className="p-4 w-40">
-                        <div className="flex items-center gap-2">
-                          <div className="flex-1 bg-slate-805 h-2 rounded-full overflow-hidden">
-                            <div className="bg-orange-500 h-full rounded-full" style={{ width: `${item.severity * 100}%` }}></div>
-                          </div>
-                          <span className="font-mono text-[10px]">{Math.round(item.severity * 100)}%</span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+      <form onSubmit={handleSearch} className="flex gap-4">
+        <div className="relative flex-1 max-w-sm">
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Enter equipment ID (e.g. P-204, EQ-0042)"
+            className="bg-slate-900 border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-sky-500 w-full"
+          />
         </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-sky-500 hover:bg-sky-400 text-slate-950 px-5 py-2 rounded-lg text-xs font-bold transition-all disabled:opacity-50"
+        >
+          {loading ? 'Loading...' : 'Get Risk Score'}
+        </button>
+      </form>
 
-        <div>
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-6 sticky top-24">
-            <div className="flex items-center gap-2">
+      {error && (
+        <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-xs p-4 rounded-xl">
+          {error}
+        </div>
+      )}
+
+      {result && (
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
               <Activity className="h-5 w-5 text-sky-400" />
-              <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Equipment Details</h3>
+              <h3 className="text-lg font-bold text-white font-mono">{result.equipment}</h3>
             </div>
-            {selected ? (
-              <div className="space-y-4 text-xs">
-                <div>
-                  <h4 className="text-base font-bold text-white">{selected.name}</h4>
-                  <span className="text-[10px] text-slate-500 font-mono mt-0.5 block">ID: {selected.id}</span>
-                </div>
-                <div className="space-y-2 border-t border-slate-800 pt-4">
-                  <div className="flex justify-between">
-                    <span className="text-slate-500">Category:</span>
-                    <span className="text-slate-300 font-medium">{selected.category}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-500">Location:</span>
-                    <span className="text-slate-300 font-medium">{selected.location}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-500">Inspector:</span>
-                    <span className="text-slate-300 font-medium">{selected.technician}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-500">Next Inspection:</span>
-                    <span className="text-slate-300 font-medium font-mono">{selected.nextInspection}</span>
-                  </div>
-                </div>
-                <div className="border-t border-slate-800 pt-4 space-y-1.5">
-                  <span className="text-slate-500">Maintenance Log Notes:</span>
-                  <p className="text-slate-300 bg-slate-850 p-3 rounded-lg border border-slate-800 leading-relaxed font-sans">
-                    {selected.notes}
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <p className="text-xs text-slate-550 italic">Select an asset from the table list to inspect properties.</p>
-            )}
+            <span className={`text-xs font-bold px-3 py-1 rounded border ${riskColor(result.risk_level)}`}>
+              {result.risk_level}
+            </span>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <span>Failure Probability</span>
+              <span className="font-mono">{Math.round(result.score * 100)}%</span>
+            </div>
+            <div className="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-all ${
+                  result.risk_level === 'HIGH' ? 'bg-red-500' :
+                  result.risk_level === 'MODERATE' ? 'bg-orange-500' : 'bg-emerald-500'
+                }`}
+                style={{ width: `${result.score * 100}%` }}
+              />
+            </div>
+          </div>
+
+          <div className="border-t border-slate-800 pt-4 space-y-2">
+            <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Details</h4>
+            <ul className="space-y-1.5">
+              {result.details.map((d, i) => (
+                <li key={i} className="text-xs text-slate-300 flex items-start gap-2">
+                  <span className="text-sky-400 mt-0.5">›</span>
+                  {d}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

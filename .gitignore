@@ -1,0 +1,11 @@
+backend
+docs
+ingestion
+shared
+frontend/node_modules
+backend/uploads/*
+!backend/uploads/.gitkeep
+__pycache__/
+*.pyc
+*.pyo
+.env
