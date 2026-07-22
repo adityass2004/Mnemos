@@ -1,5 +1,4 @@
 import asyncio
-import time
 from google import genai
 from google.genai import errors as genai_errors
 from app.models.schemas import ChatRequest, ChatResponse
@@ -53,18 +52,11 @@ class IndustrialAgent:
             self.client = None
 
     def _call_gemini(self, prompt: str) -> str:
-        last_error = None
-        for i in range(5):
-            try:
-                response = self.client.models.generate_content(
-                    model="gemini-3.6-flash",
-                    contents=prompt
-                )
-                return response.text
-            except Exception as error:
-                last_error = error
-                time.sleep(2 ** i)
-        raise last_error
+        response = self.client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt
+        )
+        return response.text
 
     async def process_query(self, request: ChatRequest) -> ChatResponse:
         if "critical error" in request.query.lower():
